@@ -99,8 +99,6 @@ git commit -m "Describe what you changed"
 git push
 ```
 
-Think of it as: **select → save → upload**.
-
 ---
 
 ## Handy checks
