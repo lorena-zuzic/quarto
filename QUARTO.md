@@ -1,168 +1,307 @@
-# Rendering your first Quarto page (Windows)
+# Editing Quarto documents (.qmd)
 
-**Quarto** turns a plain text file (`.qmd`) into a finished document, such as a web page (`.html`), a PDF or a Word file.
-You write in the `.qmd` file; Quarto produces the result. This step is called **rendering**.
+This guide shows what you can write **inside** a `.qmd` file.
+To turn the file into a web page, see `RENDER.md`.
 
-```
-hello.qmd  ──quarto render──▶  hello.html  (+ hello_files/ folder)
- you write                      you open in a browser
-```
+> **How to read the examples:** each grey box shows what to type in your `.qmd` file. Copy only what is **inside** the box.
 
-You do Part 1 **once per computer**, then Parts 2–4 for every page.
+A `.qmd` file always has two parts:
 
+````markdown
 ---
-
-## Part 1 – One-time setup
-
-### 1.1 Install Quarto
-1. Download the Windows installer from <https://quarto.org/docs/get-started/>.
-2. Run it and click through with the default options.
-
-### 1.2 Check that it works
-Open **Git Bash** (close and reopen it if it was already open, so it finds the new program) and type:
-```bash
-quarto --version
-```
-You should see a version number, e.g. `1.10.19`.
-
-### 1.3 Choose an editor
-Any text editor works, but **VS Code** is the most comfortable:
-1. Install it from <https://code.visualstudio.com>.
-2. Open VS Code, click the **Extensions** icon (four squares) on the left, search for **Quarto** and click **Install**.
-
----
-
-## Part 2 – Write a page
-
-Create a folder, e.g. `Documents/quarto-test`, and inside it a file called `hello.qmd` with this content:
-
-```markdown
----
-title: "My first page"
-author: "Your Name"
+title: "My page"
 format: html
 ---
 
-## Hello
+Everything below the header is the content.
+````
 
-This is **bold** and this is *italic*.
+- **Header** (between the `---` lines): settings for the whole document.
+- **Content**: text written in Markdown, plus code blocks.
 
-- a list item
+---
+
+## 1 – Text
+
+Quarto uses **Markdown**: plain text with a few symbols for formatting.
+
+### Headings
+````markdown
+# Big heading
+## Smaller heading
+### Even smaller
+````
+### Bold, italic, code
+````markdown
+This is **bold**, this is *italic*, and this is `code`.
+````
+
+### Paragraphs
+Leave an **empty line** between paragraphs. A single line break is ignored.
+
+````markdown
+This is the first paragraph.
+
+This is the second paragraph.
+````
+
+### Lists
+````markdown
+- an item
 - another item
+  - an indented item (two spaces in front)
 
-[A link to Quarto](https://quarto.org)
+1. first
+2. second
+````
+Leave an empty line before and after a list.
+
+### Links and images
+````markdown
+[Quarto website](https://quarto.org)
+
+![A short caption](images/photo.png)
+````
+The image path is relative to the `.qmd` file. Here the picture is in a folder called `images` next to it.
+
+### Maths
+````markdown
+Inline: $E = mc^2$
+
+On its own line:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$
+````
+
+### Notes to yourself (hidden from the page)
+````markdown
+<!-- This comment does not appear on the rendered page. -->
+````
+
+---
+
+## 2 – Making code work
+
+### 2.1 What you need
+Python code needs **Python** and **Jupyter** installed (see `RENDER.md`, "Adding Python code").
+Packages you use, e.g. `numpy` or `matplotlib`, must be installed too:
+```bash
+py -m pip install numpy matplotlib
+```
+(On Mac/Linux: `python3 -m pip install …`)
+
+### 2.2 Tell Quarto to use Python
+Add `jupyter: python3` to the header:
+
+````markdown
+---
+title: "My page"
+format: html
+jupyter: python3
+---
+````
+
+### 2.3 Write a code block
+A code block starts with three backticks and `{python}`, and ends with three backticks:
+
+````markdown
+```{python}
+x = 5
+print(x * 2)
+```
+````
+
+When you render, Quarto **runs** the code and shows the code **and** its result (`10`) on the page.
+
+> Without the curly brackets (` ```python `) the code is only **shown**, never run.
+
+### 2.4 Run code while you write (VS Code)
+With the Quarto extension, each code block has a **Run Cell** link above it. Click it to run just that block and see the result immediately, without rendering the whole document.
+
+### 2.5 Blocks share their variables
+Code blocks run from top to bottom, like one long script. A variable made in one block can be used in the next:
+
+````markdown
+```{python}
+name = "Ana"
 ```
 
-A `.qmd` file has two parts:
+Some text in between.
 
-| Part | What it is |
+```{python}
+print("Hello", name)
+```
+````
+
+---
+
+## 3 – Showing or hiding code
+
+You control each code block with **options**: lines starting with `#|` at the very top of the block.
+
+### 3.1 Options for one block
+
+| Option | Effect |
 |---|---|
-| Between the `---` lines | The **header** (called YAML): settings such as the title and output format |
-| Everything below | The **content**, written in Markdown: `#` for headings, `**` for bold, `-` for lists |
+| `#| echo: false` | Hide the code, show the result |
+| `#| output: false` | Show the code, hide the result |
+| `#| include: false` | Hide both, but still run the code (e.g. for loading data) |
+| `#| eval: false` | Show the code, but **don't run** it |
+| `#| code-fold: true` | Hide the code behind a clickable **▶ Code** button |
 
-> In VS Code, save the file as `hello.qmd`. Make sure Windows hasn't added `.txt` to the end.
+Example: the reader sees only the result, `10`.
+````markdown
+```{python}
+#| echo: false
+x = 5
+print(x * 2)
+```
+````
+
+Example: the code is folded away, with a custom button text.
+````markdown
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+x = 5
+print(x * 2)
+```
+````
+
+### 3.2 Options for the whole document
+Put them in the header instead, and they apply to every block:
+
+````markdown
+---
+title: "My page"
+jupyter: python3
+format:
+  html:
+    code-fold: true
+execute:
+  echo: true
+---
+````
+
+- `code-fold` goes under `format: html:` because it only exists for web pages.
+- Options that control running and showing code (`echo`, `eval`, `output`, …) go under `execute:`.
+- An option inside a block **overrides** the header for that block.
+
+> **Indentation matters in the header.** Use spaces (not Tab), and keep the same number of spaces for things at the same level.
 
 ---
 
-## Part 3 – Render the page
+## 4 – Labelling figures
 
-### Option A: in Git Bash
-```bash
-cd ~/Documents/quarto-test
-quarto render hello.qmd
+### 4.1 A figure made by code
+Give the block a `label` that **starts with `fig-`**, and a caption with `fig-cap`:
+
+````markdown
+```{python}
+#| label: fig-squares
+#| fig-cap: "Squares of the numbers 1 to 5."
+#| echo: false
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+plt.plot(x, [i**2 for i in x])
+plt.show()
 ```
-Quarto creates two new things next to your file:
+````
 
-- `hello.html`: the finished page. Double-click it to open it in your browser.
-- `hello_files/`: the styling and scripts the page needs. Keep it next to the `.html`, or the page will look broken.
+The figure is now numbered automatically, with the caption *"Figure 1: Squares of the numbers 1 to 5."*
 
-### Option B: live preview
-```bash
-quarto preview hello.qmd
-```
-This opens the page in your browser and **updates it every time you save** the `.qmd`.
-Press `Ctrl + C` in Git Bash to stop it.
+### 4.2 Refer to the figure in your text
+Use `@` plus the label:
 
-### Option C: in VS Code
-Open `hello.qmd` and click the **Preview** button in the top right (or press `Ctrl + Shift + K`).
-The page appears in a panel next to your file and updates when you save.
+````markdown
+As @fig-squares shows, the values grow quickly.
+````
+This becomes *"As Figure 1 shows, …"*, with a link to the figure. If you add another figure earlier in the page, the numbers update by themselves.
+
+### 4.3 A figure from an image file
+Add `{#fig-…}` after the image:
+
+````markdown
+![A photo of the lab.](images/lab.png){#fig-lab}
+
+See @fig-lab.
+````
+
+### 4.4 Useful extra options
+
+| Option | Effect |
+|---|---|
+| `#| fig-alt: "Line rising steeply"` | Description for screen readers |
+| `#| fig-width: 6` | Width in inches |
+| `#| fig-height: 4` | Height in inches |
+
+> Labels may only contain letters, numbers and `-`. **No spaces or underscores**: `fig-my-plot` works, `fig my_plot` does not.
 
 ---
 
-## Part 4 – Edit and render again
+## 5 – Code readers can edit and run
 
-1. Change something in `hello.qmd`, e.g. the title.
-2. Save the file.
-3. Render again (Part 3).
+Normally the reader only **sees** your code and results. With the **quarto-live** extension, readers can **change the code and run it in their browser**: no Python needed on their computer.
 
-**Remember:** you only ever edit the `.qmd`. The `.html` is recreated every time you render, so any change you make directly in the `.html` will be overwritten.
-
----
-
-## Other formats
-
-Change the `format:` line in the header:
-
-| Header | Result | Extra requirement |
-|---|---|---|
-| `format: html` | `hello.html` web page | none |
-| `format: docx` | `hello.docx` Word file | none |
-| `format: pdf` | `hello.pdf` | run `quarto install tinytex` once |
-
-Or choose the format when rendering, without changing the file:
+### 5.1 Install the extension (once per project)
+In Git Bash, inside your project folder:
 ```bash
-quarto render hello.qmd --to docx
+quarto add r-wasm/quarto-live
 ```
+Answer `Y` to the questions. This creates an `_extensions/` folder in your project.
 
+### 5.2 Change the header
+Use `format: live-html`, and remove the `jupyter: python3` line:
+
+````markdown
 ---
+title: "Try it yourself"
+format: live-html
+---
+````
 
-## Optional: adding Python code
-
-Quarto can run code and put the results (numbers, tables, plots) into the page. This needs **Python** and **Jupyter**.
-
-1. Install Python from <https://www.python.org/downloads/>. In the installer, tick **"Add python.exe to PATH"**.
-2. In Git Bash, install Jupyter:
-   ```bash
-   py -m pip install jupyter
-   ```
-3. Add a code block to your `.qmd`:
-   ````markdown
-   ```{python}
-   1 + 1
-   ```
-   ````
-4. Render again. The page shows the code **and** its result, `2`.
-
-Check your setup at any time with:
-```bash
-quarto check
+### 5.3 Use `{pyodide}` instead of `{python}`
+````markdown
+```{pyodide}
+x = 5
+print(x * 2)
 ```
+````
+
+On the rendered page this block becomes a small editor with a **Run Code** button. Readers can change `5` to another number and click Run.
+
+### 5.4 Things to know
+- **Open it through a web address**, not by double-clicking the `.html` file. Use `quarto preview index.qmd` on your computer, or the GitHub Pages link once it's online.
+- **The first run is slow** (a few seconds): the browser downloads Python. It needs an internet connection.
+- **Push the `_extensions/` folder to GitHub** along with everything else, or the page won't render properly.
+- `numpy`, `pandas` and `matplotlib` work out of the box. Some other packages are not available in the browser.
+- Normal `{python}` blocks and `{pyodide}` blocks run in different places (your computer vs. the reader's browser) and **don't share variables**.
+
+More options are in the quarto-live documentation: <https://r-wasm.github.io/quarto-live/>
 
 ---
 
 ## Common problems
 
-**`quarto: command not found`**
-Git Bash was open before you installed Quarto. Close it and open it again.
+**My code block appears as plain text and doesn't run**
+- Check the curly brackets: ` ```{python} `, not ` ```python `.
+- Check that the block isn't inside another block (e.g. you copied the outer box from a guide).
+- Check that the header has `jupyter: python3`.
 
-**`Jupyter is not available in this Python installation`**
-Your page contains Python code (or `jupyter: python3` in the header), but Jupyter isn't installed. Follow the Python section above.
+**`ModuleNotFoundError: No module named 'numpy'`**
+The package isn't installed. Run `py -m pip install numpy` (or the missing package's name).
 
-**`python3: command not found` / Python opens the Microsoft Store**
-On Windows the Python command is usually `py` or `python`, not `python3`. Make sure "Add python.exe to PATH" was ticked during installation.
+**My `#|` options are ignored**
+They must be the **first lines** of the block, with no empty line before them, and a space after `#|`.
 
-**The page looks plain or broken when I send it to someone**
-The `hello_files/` folder is missing. Send both, or add this to the header to pack everything into one file:
-```yaml
-format:
-  html:
-    embed-resources: true
-```
+**`@fig-…` shows as plain text or `?@fig-…`**
+The label is wrong: it must start with `fig-`, match exactly, and contain no spaces or underscores. The figure also needs a `fig-cap`.
 
-**Nothing changed after editing**
-You edited but didn't save, or you didn't render again. With `quarto preview` this happens automatically.
+**`YAML parse error` when rendering**
+Something is wrong in the header, usually indentation or a missing space after a `:`.
 
----
-
-## Next step
-Once a page renders, you can publish it online with GitHub Pages. See `GITHUB.md` for getting the project onto GitHub first.
+**The quarto-live editor doesn't appear or never finishes loading**
+You opened the file by double-clicking it. Use `quarto preview` or the GitHub Pages link instead.
