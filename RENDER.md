@@ -4,7 +4,7 @@
 You write in the `.qmd` file; Quarto produces the result. This step is called **rendering**.
 
 ```
-hello.qmd  ──quarto render──▶  hello.html  (+ hello_files/ folder)
+index.qmd  ──quarto render──▶  index.html  (+ index_files/ folder)
  you write                      you open in a browser
 ```
 
@@ -34,7 +34,7 @@ Any text editor works, but **VS Code** is the most comfortable:
 
 ## Part 2 – Write a page
 
-Create a folder, e.g. `Documents/quarto-test`, and inside it a file called `hello.qmd` with this content:
+Create a folder, e.g. `Documents/quarto-test`, and inside it a file called `index.qmd` with this content:
 
 ```markdown
 ---
@@ -60,7 +60,7 @@ A `.qmd` file has two parts:
 | Between the `---` lines | The **header** (called YAML): settings such as the title and output format |
 | Everything below | The **content**, written in Markdown: `#` for headings, `**` for bold, `-` for lists |
 
-> In VS Code, save the file as `hello.qmd`. Make sure Windows hasn't added `.txt` to the end.
+> In VS Code, save the file as `index.qmd`. Make sure Windows hasn't added `.txt` to the end.
 
 ---
 
@@ -69,29 +69,25 @@ A `.qmd` file has two parts:
 ### Option A: in Git Bash
 ```bash
 cd ~/Documents/quarto-test
-quarto render hello.qmd
+quarto render index.qmd
 ```
 Quarto creates two new things next to your file:
 
-- `hello.html`: the finished page. Double-click it to open it in your browser.
-- `hello_files/`: the styling and scripts the page needs. Keep it next to the `.html`, or the page will look broken.
+- `index.html`: the finished page. Double-click it to open it in your browser.
+- `index_files/`: the styling and scripts the page needs. Keep it next to the `.html`, or the page will look broken.
 
 ### Option B: live preview
 ```bash
-quarto preview hello.qmd
+quarto preview index.qmd
 ```
 This opens the page in your browser and **updates it every time you save** the `.qmd`.
 Press `Ctrl + C` in Git Bash to stop it.
-
-### Option C: in VS Code
-Open `hello.qmd` and click the **Preview** button in the top right (or press `Ctrl + Shift + K`).
-The page appears in a panel next to your file and updates when you save.
 
 ---
 
 ## Part 4 – Edit and render again
 
-1. Change something in `hello.qmd`, e.g. the title.
+1. Change something in `index.qmd`, e.g. the title.
 2. Save the file.
 3. Render again (Part 3).
 
@@ -99,24 +95,7 @@ The page appears in a panel next to your file and updates when you save.
 
 ---
 
-## Other formats
-
-Change the `format:` line in the header:
-
-| Header | Result | Extra requirement |
-|---|---|---|
-| `format: html` | `hello.html` web page | none |
-| `format: docx` | `hello.docx` Word file | none |
-| `format: pdf` | `hello.pdf` | run `quarto install tinytex` once |
-
-Or choose the format when rendering, without changing the file:
-```bash
-quarto render hello.qmd --to docx
-```
-
----
-
-## Optional: adding Python code
+## Adding Python code
 
 Quarto can run code and put the results (numbers, tables, plots) into the page. This needs **Python** and **Jupyter**.
 
@@ -263,7 +242,7 @@ Your page contains Python code (or `jupyter: python3` in the header), but Jupyte
 On Windows the Python command is usually `py` or `python`, not `python3`. Make sure "Add python.exe to PATH" was ticked during installation.
 
 **The page looks plain or broken when I send it to someone**
-The `hello_files/` folder is missing. Send both, or add this to the header to pack everything into one file:
+The `index_files/` folder is missing. Send both, or add this to the header to pack everything into one file:
 ```yaml
 format:
   html:

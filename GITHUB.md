@@ -108,10 +108,14 @@ Think of it as: **select → save → upload**.
 GitHub can show the `.html` files in your repository as a website, at
 `https://USERNAME.github.io/REPOSITORY/`.
 
-Before you start:
-1. Name your main page **`index.qmd`**. A website always opens the file called `index.html` first, so this page becomes your home page.
-2. Render it (see `QUARTO.md`). This creates `index.html` and an `index_files/` folder.
-3. Push **both** `index.html` and `index_files/` to GitHub.
+Before you start, name your main page **`index.qmd`**. A website always opens the file called `index.html` first, so this page becomes your home page.
+
+Then render and push. How depends on what you are publishing (see `RENDER.md`):
+
+| You are publishing… | Render with | Push | GitHub Pages folder |
+|---|---|---|---|
+| **A single page** | `quarto render index.qmd` | `index.html` and `index_files/` | `/ (root)` |
+| **A website with several pages** (with `_quarto.yml`) | `quarto render` | `docs/`, `_quarto.yml`, `.nojekyll` (and `_extensions/` if you use quarto-live) | `/docs` |
 
 ### 4.1 Make sure the repository is public
 On a free GitHub account, Pages only works for public repositories.
@@ -123,7 +127,8 @@ On a free GitHub account, Pages only works for public repositories.
 2. In the left menu, click **Pages**.
 3. Under **Build and deployment**:
    - **Source:** Deploy from a branch
-   - **Branch:** `main`, folder `/ (root)`
+   - **Branch:** `main`
+   - **Folder:** `/ (root)` for a single page, or **`/docs`** for a website with several pages
 4. Click **Save**.
 
 ### 4.3 Wait and find your link
@@ -134,15 +139,16 @@ Click it: your `index` page opens.
 ```
 https://USERNAME.github.io/myproject/
 ```
-Other pages need their file name at the end, e.g. `https://USERNAME.github.io/myproject/about.html` for `about.qmd`.
+For a website with several pages, use the menu bar to reach the other pages. You can also type a page's file name at the end, e.g. `https://USERNAME.github.io/myproject/about.html` for `about.qmd`.
 
 ### 4.4 Optional: show the link on the repository page
 On the repository's main page, click the ⚙️ next to **About** (right side). Tick **Use your GitHub Pages website** and click **Save**. The link now appears at the top of the repository.
 
 ### 4.5 Updating the page
-The website shows the `.html` that is on GitHub, not your `.qmd`. After each change:
+The website shows the `.html` that is on GitHub, not your `.qmd`. After each change, render and push again:
 ```bash
-quarto render index.qmd
+quarto render index.qmd     # single page
+quarto render               # website with several pages
 git add .
 git commit -m "Update page"
 git push
@@ -179,10 +185,11 @@ You are in the wrong folder. Use `pwd` to see where you are and `cd` to go to yo
 **My GitHub Pages address shows "404"**
 - Wait a minute and refresh. The first build takes a while.
 - The address without a file name (`https://USERNAME.github.io/myproject/`) looks for a file called `index.html`. Check that your page is called `index.qmd` (not e.g. `hello.qmd`), then render it and push.
-- Check that `index.html` is actually on GitHub. If it isn't, you forgot to render or to push.
+- Check that `index.html` is actually on GitHub (in the main folder for a single page, in `docs/` for a website). If it isn't, you forgot to render or to push.
+- Check the Pages folder setting: `/ (root)` for a single page, `/docs` for a website.
 
 **My GitHub Pages site looks plain or unstyled**
-The `index_files/` folder wasn't pushed. Run `git status`, then `git add .`, `git commit` and `git push`.
+For a single page, the `index_files/` folder wasn't pushed. For a website, the `docs/` folder or `.nojekyll` wasn't pushed. Run `git status`, then `git add .`, `git commit` and `git push`.
 
 **`warning: LF will be replaced by CRLF`**
 Harmless. Windows and Mac/Linux mark line endings differently, and Git is converting them for you.
