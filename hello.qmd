@@ -7,3 +7,10 @@ jupyter: python3
 ---
 
 Hello world!
+
+```{python}
+
+import numpy as np
+print("good job")
+
+```
