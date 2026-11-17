@@ -228,26 +228,3 @@ You forgot `-m "message"`. If you're stuck in it, type `:q!` and press Enter, th
 </details>
 
 ---
-
-## Optional: SSH instead of HTTPS
-
-SSH uses a key file on your computer instead of the browser sign-in. It is useful on computers without a browser (e.g. servers).
-
-1. Create a key (press Enter at every question):
-   ```bash
-   ssh-keygen -t ed25519 -C "you@example.com"
-   ```
-2. Copy the public key to the clipboard:
-   ```bash
-   clip < ~/.ssh/id_ed25519.pub
-   ```
-3. On GitHub: **Settings → SSH and GPG keys → New SSH key**, paste, and save.
-4. Test it (type `yes` if asked whether to continue connecting):
-   ```bash
-   ssh -T git@github.com
-   ```
-   You should see *"Hi USERNAME! You've successfully authenticated"*.
-5. Use the SSH address instead of HTTPS:
-   ```bash
-   git remote set-url origin git@github.com:USERNAME/myproject.git
-   ```
