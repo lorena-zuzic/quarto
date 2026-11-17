@@ -25,11 +25,6 @@ quarto --version
 ```
 You should see a version number, e.g. `1.10.19`.
 
-### 1.3 Choose an editor
-Any text editor works, but **VS Code** is the most comfortable:
-1. Install it from <https://code.visualstudio.com>.
-2. Open VS Code, click the **Extensions** icon (four squares) on the left, search for **Quarto** and click **Install**.
-
 ---
 
 ## Part 2 – Write a page
@@ -60,27 +55,28 @@ A `.qmd` file has two parts:
 | Between the `---` lines | The **header** (called YAML): settings such as the title and output format |
 | Everything below | The **content**, written in Markdown: `#` for headings, `**` for bold, `-` for lists |
 
-> In VS Code, save the file as `index.qmd`. Make sure Windows hasn't added `.txt` to the end.
+> Save the file as `index.qmd`. In Notepad, set **Save as type** to **All files**, otherwise Windows saves it as `index.qmd.txt`.
+> Tip: Windows hides file extensions by default. Show them in File Explorer under **View → Show → File name extensions** (Windows 10: **View → File name extensions**).
 
 ---
 
 ## Part 3 – Render the page
 
-### Option A: in Git Bash
+### Step 1: render
+In Git Bash, go to your folder and render the file:
 ```bash
-cd ~/Documents/quarto-test
 quarto render index.qmd
 ```
 Quarto creates two new things next to your file:
 
-- `index.html`: the finished page. Double-click it to open it in your browser.
+- `index.html`: the finished page.
 - `index_files/`: the styling and scripts the page needs. Keep it next to the `.html`, or the page will look broken.
 
-### Option B: live preview
+### Step 2: preview
 ```bash
 quarto preview index.qmd
 ```
-This opens the page in your browser and **updates it every time you save** the `.qmd`.
+This opens the page in your browser. While it runs, the page **updates every time you save** the `.qmd`.
 Press `Ctrl + C` in Git Bash to stop it.
 
 ---
@@ -89,7 +85,7 @@ Press `Ctrl + C` in Git Bash to stop it.
 
 1. Change something in `index.qmd`, e.g. the title.
 2. Save the file.
-3. Render again (Part 3).
+3. Render and preview again (Part 3).
 
 **Remember:** you only ever edit the `.qmd`. The `.html` is recreated every time you render, so any change you make directly in the `.html` will be overwritten.
 
@@ -176,9 +172,9 @@ Run the command **without a file name**:
 ```bash
 quarto render
 ```
-Quarto renders every page into the `docs/` folder. Open `docs/index.html` to see the result.
+Quarto renders every page into the `docs/` folder.
 
-Or, to click between the tabs while you work, with automatic updates when you save:
+Then preview the whole site, again **without a file name**, and click between the tabs:
 ```bash
 quarto preview
 ```
@@ -270,7 +266,7 @@ format:
 <details>
 <summary><b>Nothing changed after editing</b></summary>
 
-You edited but didn't save, or you didn't render again. With `quarto preview` this happens automatically.
+You edited but didn't save, or you didn't render again. Save the `.qmd`, run `quarto render`, then `quarto preview`.
 
 </details>
 

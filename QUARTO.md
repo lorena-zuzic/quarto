@@ -117,8 +117,13 @@ When you render, Quarto **runs** the code and shows the code **and** its result 
 
 > Without the curly brackets (` ```python `) the code is only **shown**, never run.
 
-### 2.4 Run code while you write (VS Code)
-With the Quarto extension, each code block has a **Run Cell** link above it. Click it to run just that block and see the result immediately, without rendering the whole document.
+### 2.4 Check your code
+Code only runs when you render. After each change:
+1. Save the `.qmd`.
+2. Run `quarto render index.qmd`.
+3. Run `quarto preview index.qmd` and look at the result.
+
+If the code has an error, rendering stops and Git Bash shows the error message and the line it happened on.
 
 ### 2.5 Blocks share their variables
 Code blocks run from top to bottom, like one long script. A variable made in one block can be used in the next:
