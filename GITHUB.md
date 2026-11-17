@@ -4,6 +4,7 @@
 **GitHub** is a website that stores a copy of that folder online, so you can back it up, share it and publish it.
 
 You do Part 1 **once per computer**, Part 2 **once per project**, and Part 3 **every time you work**.
+Part 4 shows how to turn your project into a website with GitHub Pages.
 
 ---
 
@@ -102,6 +103,50 @@ Think of it as: **select → save → upload**.
 
 ---
 
+## Part 4 – Publish a web page with GitHub Pages
+
+GitHub can show the `.html` files in your repository as a website, at
+`https://USERNAME.github.io/REPOSITORY/`.
+
+Before you start, render your page (see `QUARTO.md`) and push **both** the `.html` file and its `_files/` folder to GitHub.
+
+### 4.1 Make sure the repository is public
+On a free GitHub account, Pages only works for public repositories.
+- On your repository page, next to its name, it says **Public** or **Private**.
+- If it says Private: **Settings** → scroll to the bottom (**Danger Zone**) → **Change visibility** → **Make public**.
+
+### 4.2 Switch on Pages
+1. On your repository page, click **Settings** (top menu, gear icon).
+2. In the left menu, click **Pages**.
+3. Under **Build and deployment**:
+   - **Source:** Deploy from a branch
+   - **Branch:** `main`, folder `/ (root)`
+4. Click **Save**.
+
+### 4.3 Wait and find your link
+- GitHub now builds the site, which takes about a minute. You can watch it in the **Actions** tab: a yellow dot turns into a green tick.
+- Go back to **Settings → Pages** and refresh. At the top it says *"Your site is live at …"*.
+
+That link points to the repository folder. Add your file name to the end:
+```
+https://USERNAME.github.io/myproject/hello.html
+```
+
+### 4.4 Optional: show the link on the repository page
+On the repository's main page, click the ⚙️ next to **About** (right side). Tick **Use your GitHub Pages website** and click **Save**. The link now appears at the top of the repository.
+
+### 4.5 Updating the page
+The website shows the `.html` that is on GitHub, not your `.qmd`. After each change:
+```bash
+quarto render hello.qmd
+git add .
+git commit -m "Update page"
+git push
+```
+The website updates by itself about a minute after the push.
+
+---
+
 ## Handy checks
 
 | Command | Question it answers |
@@ -126,6 +171,14 @@ git branch -m master main
 
 **`fatal: not a git repository`**
 You are in the wrong folder. Use `pwd` to see where you are and `cd` to go to your project folder.
+
+**My GitHub Pages address shows "404"**
+- Wait a minute and refresh. The first build takes a while.
+- The address without a file name (`https://USERNAME.github.io/myproject/`) looks for a file called `index.html`. Either add your file name to the address (`…/hello.html`), or rename `hello.qmd` to `index.qmd`, render it, and push.
+- Check that the `.html` file is actually on GitHub. If it isn't, you forgot to render or to push.
+
+**My GitHub Pages site looks plain or unstyled**
+The `hello_files/` folder wasn't pushed. Run `git status`, then `git add .`, `git commit` and `git push`.
 
 **`warning: LF will be replaced by CRLF`**
 Harmless. Windows and Mac/Linux mark line endings differently, and Git is converting them for you.
