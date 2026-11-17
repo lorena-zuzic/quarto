@@ -232,16 +232,32 @@ Another code block.
 
 ## Common problems
 
-**`quarto: command not found`**
+Click a problem to see the solution.
+
+<details>
+<summary><b><code>quarto: command not found</code></b></summary>
+
 Git Bash was open before you installed Quarto. Close it and open it again.
 
-**`Jupyter is not available in this Python installation`**
+</details>
+
+<details>
+<summary><b><code>Jupyter is not available in this Python installation</code></b></summary>
+
 Your page contains Python code (or `jupyter: python3` in the header), but Jupyter isn't installed. Follow the Python section above.
 
-**`python3: command not found` / Python opens the Microsoft Store**
+</details>
+
+<details>
+<summary><b><code>python3: command not found</code> / Python opens the Microsoft Store</b></summary>
+
 On Windows the Python command is usually `py` or `python`, not `python3`. Make sure "Add python.exe to PATH" was ticked during installation.
 
-**The page looks plain or broken when I send it to someone**
+</details>
+
+<details>
+<summary><b>The page looks plain or broken when I send it to someone</b></summary>
+
 The `index_files/` folder is missing. Send both, or add this to the header to pack everything into one file:
 ```yaml
 format:
@@ -249,18 +265,32 @@ format:
     embed-resources: true
 ```
 
-**Nothing changed after editing**
+</details>
+
+<details>
+<summary><b>Nothing changed after editing</b></summary>
+
 You edited but didn't save, or you didn't render again. With `quarto preview` this happens automatically.
 
-**The menu bar is missing**
+</details>
+
+<details>
+<summary><b>The menu bar is missing</b></summary>
+
 - The file must be called exactly `_quarto.yml`, with the underscore, and be in the project folder (not in a subfolder).
 - Render with `quarto render` **without** a file name.
 - You're looking at an old `index.html` in the main folder. Open the one in `docs/`.
 
-**A tab leads to "404" on GitHub Pages**
+</details>
+
+<details>
+<summary><b>A tab leads to "404" on GitHub Pages</b></summary>
+
 - The page isn't listed in `_quarto.yml`, or wasn't rendered. Run `quarto render`, then commit and push.
 - GitHub Pages is still set to `/ (root)`. Change it to `/docs` under **Settings → Pages**.
 - File names are case-sensitive online: `About.qmd` and `about.qmd` are different files.
+
+</details>
 
 ---
 

@@ -170,32 +170,62 @@ The website updates by itself about a minute after the push.
 
 ## Common problems
 
-**`Password authentication is not supported for Git operations`**
+Click a problem to see the solution.
+
+<details>
+<summary><b><code>Password authentication is not supported for Git operations</code></b></summary>
+
 GitHub no longer accepts your account password in the terminal. Use the browser sign-in window that Git for Windows shows. If it doesn't appear, reinstall Git for Windows and keep the default "Git Credential Manager" option, or use SSH (see below).
 
-**`error: src refspec main does not match any`**
+</details>
+
+<details>
+<summary><b><code>error: src refspec main does not match any</code></b></summary>
+
 Either you haven't made a commit yet (do `git add .` and `git commit` first), or your branch is called `master`. Check with `git branch`, and rename it with:
 ```bash
 git branch -m master main
 ```
 
-**`fatal: not a git repository`**
+</details>
+
+<details>
+<summary><b><code>fatal: not a git repository</code></b></summary>
+
 You are in the wrong folder. Use `pwd` to see where you are and `cd` to go to your project folder.
 
-**My GitHub Pages address shows "404"**
+</details>
+
+<details>
+<summary><b>My GitHub Pages address shows "404"</b></summary>
+
 - Wait a minute and refresh. The first build takes a while.
 - The address without a file name (`https://USERNAME.github.io/myproject/`) looks for a file called `index.html`. Check that your page is called `index.qmd` (not e.g. `hello.qmd`), then render it and push.
 - Check that `index.html` is actually on GitHub (in the main folder for a single page, in `docs/` for a website). If it isn't, you forgot to render or to push.
 - Check the Pages folder setting: `/ (root)` for a single page, `/docs` for a website.
 
-**My GitHub Pages site looks plain or unstyled**
+</details>
+
+<details>
+<summary><b>My GitHub Pages site looks plain or unstyled</b></summary>
+
 For a single page, the `index_files/` folder wasn't pushed. For a website, the `docs/` folder or `.nojekyll` wasn't pushed. Run `git status`, then `git add .`, `git commit` and `git push`.
 
-**`warning: LF will be replaced by CRLF`**
+</details>
+
+<details>
+<summary><b><code>warning: LF will be replaced by CRLF</code></b></summary>
+
 Harmless. Windows and Mac/Linux mark line endings differently, and Git is converting them for you.
 
-**The commit opens a strange text editor**
+</details>
+
+<details>
+<summary><b>The commit opens a strange text editor</b></summary>
+
 You forgot `-m "message"`. If you're stuck in it, type `:q!` and press Enter, then run the commit again with `-m`.
+
+</details>
 
 ---
 

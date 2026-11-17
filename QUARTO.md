@@ -286,22 +286,48 @@ More options are in the quarto-live documentation: <https://r-wasm.github.io/qua
 
 ## Common problems
 
-**My code block appears as plain text and doesn't run**
+Click a problem to see the solution.
+
+<details>
+<summary><b>My code block appears as plain text and doesn't run</b></summary>
+
 - Check the curly brackets: ` ```{python} `, not ` ```python `.
 - Check that the block isn't inside another block (e.g. you copied the outer box from a guide).
 - Check that the header has `jupyter: python3`.
 
-**`ModuleNotFoundError: No module named 'numpy'`**
+</details>
+
+<details>
+<summary><b><code>ModuleNotFoundError: No module named 'numpy'</code></b></summary>
+
 The package isn't installed. Run `py -m pip install numpy` (or the missing package's name).
 
-**My `#|` options are ignored**
+</details>
+
+<details>
+<summary><b>My <code>#|</code> options are ignored</b></summary>
+
 They must be the **first lines** of the block, with no empty line before them, and a space after `#|`.
 
-**`@fig-…` shows as plain text or `?@fig-…`**
+</details>
+
+<details>
+<summary><b><code>@fig-…</code> shows as plain text or <code>?@fig-…</code></b></summary>
+
 The label is wrong: it must start with `fig-`, match exactly, and contain no spaces or underscores. The figure also needs a `fig-cap`.
 
-**`YAML parse error` when rendering**
+</details>
+
+<details>
+<summary><b><code>YAML parse error</code> when rendering</b></summary>
+
 Something is wrong in the header, usually indentation or a missing space after a `:`.
 
-**The quarto-live editor doesn't appear or never finishes loading**
+</details>
+
+<details>
+<summary><b>The quarto-live editor doesn't appear or never finishes loading</b></summary>
+
 You opened the file by double-clicking it. Use `quarto preview` or the GitHub Pages link instead.
+
+</details>
