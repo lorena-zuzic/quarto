@@ -133,9 +133,8 @@ Before you start:
 
 ### Step 1 – Make sure the repository is public
 On a free GitHub account, Pages only works for public repositories.
-- On your repository page, next to its name, it says **Public** or **Private**.
-- If it says Private: **Settings** → scroll to the bottom (**Danger Zone**) → **Change visibility** → **Make public**.
-
+- On your repository page, next to its name, it says **Public** or **Private**- If it says Private: **Settings** → scroll to the bottom (**Danger Zone**) → **Change visibility** → **Make public**.
+- If it says Private: **Settings** → **Change visibility** → **Make public**.
 ### Step 2 – Switch on Pages
 1. On your repository page, click **Settings** (top menu, gear icon).
 2. In the left menu, click **Pages**.
@@ -154,8 +153,8 @@ Click it: your `index` page opens.
 https://USERNAME.github.io/quarto-test/
 ```
 
-### Step 4 – Optional: show the link on the repository page
-On the repository's main page, click the ⚙️ next to **About** (right side). Tick **Use your GitHub Pages website** and click **Save**. The link now appears at the top of the repository.
+### Step 4 – Show the link on the repository page
+On the repository's main page, click the gear icon next to **About** (right side). Tick **Use your GitHub Pages website** and click **Save**. The link now appears at the top of the repository.
 
 ### Updating the page
 The website shows the `.html` that is on GitHub, not your `.qmd`. After each change, render and push again:

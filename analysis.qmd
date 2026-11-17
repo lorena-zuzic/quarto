@@ -1,0 +1,15 @@
+---
+title: "Analysis"
+format:
+    html:
+        code-fold: false
+jupyter: python3
+---
+
+This is an analysis page.
+
+```{python}
+
+1 + 1
+
+```
