@@ -1,0 +1,19 @@
+project:
+    type: website
+    output-dir: docs
+    render: 
+      - "*.qmd"
+
+website:
+    title: "Quarto trial"
+    sidebar:
+        style: docked
+        contents:
+          - href: index.qmd
+            text: Home
+          - about.qmd
+          - analysis.qmd
+
+format:
+    html:
+        theme: cosmo

@@ -1,0 +1,8 @@
+---
+title: "About"
+format:
+    html:
+        code-fold: false
+---
+
+Hello again... This is an about page. It's canadian.

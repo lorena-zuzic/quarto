@@ -1,0 +1,32 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quarto Basics",
+    "section": "",
+    "text": "Hello world!\n\n\nCode\nimport numpy as np\nprint(\"good job\")\n\n\ngood job\n\n\nThis is some text that will be shown on screen.\nWant to make it bold? here",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Hello again… This is an about page. It’s canadian.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Analysis",
+    "section": "",
+    "text": "This is an analysis page.\n\n1 + 1\n\n2",
+    "crumbs": [
+      "Analysis"
+    ]
+  }
+]

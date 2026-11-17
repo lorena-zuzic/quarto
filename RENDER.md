@@ -170,16 +170,16 @@ The website updates by itself about a minute after the push.
 
 ## Rendering a website with several pages
 
-So far each `.qmd` becomes its own separate page. To make **one website** with a **menu bar** (tabs) at the top that links all your pages together, you turn the folder into a **website project**.
+So far each `.qmd` becomes its own separate page. To make **one website** with a **sidebar** on the left that links all your pages together, you turn the folder into a **website project**.
 
 ```
 index.qmd    ─┐
-about.qmd    ─┼─ quarto render ─▶  docs/  (one website, menu bar on every page)
+about.qmd    ─┼─ quarto render ─▶  docs/  (one website, sidebar on every page)
 analysis.qmd ─┘
 ```
 
 ### Step 1 – Create the pages
-Each tab is its own `.qmd` file in the project folder:
+Each page in the sidebar is its own `.qmd` file in the project folder:
 ```
 index.qmd      ← home page (always opens first)
 about.qmd
@@ -194,11 +194,14 @@ In the project folder, create a file called **`_quarto.yml`** (note the undersco
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
 
 website:
   title: "My project"
-  navbar:
-    left:
+  sidebar:
+    style: docked
+    contents:
       - href: index.qmd
         text: Home
       - about.qmd
@@ -211,14 +214,28 @@ format:
 
 | Part | What it does |
 |---|---|
-| `type: website` | Renders all pages together as one site, with a menu bar |
+| `type: website` | Renders all pages together as one site, with a sidebar |
 | `output-dir: docs` | Puts the finished website in a folder called `docs/` (GitHub Pages can publish from this folder) |
-| `title:` | The site name, shown on the left of the menu bar |
-| `navbar: left:` | The tabs, in order. Each tab shows the page's `title`; use `href:` + `text:` to choose a different label |
+| `render: - "*.qmd"` | Only turns `.qmd` files into pages. Without it, Quarto also renders other documents in the folder, such as `.md` notes or a README (`*` means "any name") |
+| `title:` | The site name, shown at the top of the sidebar |
+| `sidebar:` | The list of pages on the left side of every page |
+| `style: docked` | A fixed panel along the left edge. Use `floating` for a lighter look without a separate panel |
+| `contents:` | The pages, in order. Each link shows the page's `title`; use `href:` + `text:` to choose a different label |
 | `format: html:` | Settings for **every** page. A page's own header can still override them |
 | `theme: cosmo` | Optional colour scheme. Others: `flatly`, `darkly`, `minty`, `lux` |
 
 > **Indentation matters.** Use spaces (not Tab), and keep things at the same level lined up.
+
+> **Prefer a menu bar at the top instead?** Replace the `sidebar:` part with:
+> ```yaml
+>   navbar:
+>     left:
+>       - href: index.qmd
+>         text: Home
+>       - about.qmd
+>       - analysis.qmd
+> ```
+> You can also use both: the menu bar at the top and the sidebar on the left.
 
 ### Step 3 – Render the whole site
 Run the command **without a file name**:
@@ -227,7 +244,7 @@ quarto render
 ```
 Quarto renders every page into the `docs/` folder.
 
-Then preview the whole site, again **without a file name**, and click between the tabs:
+Then preview the whole site, again **without a file name**, and click between the pages in the sidebar:
 ```bash
 quarto preview
 ```
@@ -248,7 +265,7 @@ If you rendered single pages earlier, delete the old `index.html` and `index_fil
    ```
 3. On GitHub: **Settings → Pages**. Keep the branch as **`main`**, change the folder from `/ (root)` to **`/docs`**, and click **Save**. (First time using Pages? Follow "Publishing your page with GitHub Pages" above, but choose `/docs` as the folder.)
 
-After about a minute, `https://USERNAME.github.io/quarto-test/` opens your home page, with the menu bar leading to the other pages. You can also type a page's file name at the end, e.g. `…/about.html` for `about.qmd`.
+After about a minute, `https://USERNAME.github.io/quarto-test/` opens your home page, with the sidebar leading to the other pages. You can also type a page's file name at the end, e.g. `…/about.html` for `about.qmd`.
 
 ### Updating the website
 ```bash
@@ -257,11 +274,11 @@ git add .
 git commit -m "Update site"
 git push
 ```
-Always use `quarto render` **without** a file name, so every page and the menu bar stay in sync.
+Always use `quarto render` **without** a file name, so every page and the sidebar stay in sync.
 
 ### Adding a page later
 1. Create the new `.qmd`, e.g. `results.qmd`.
-2. Add it under `navbar: left:` in `_quarto.yml`.
+2. Add it under `sidebar: contents:` in `_quarto.yml`.
 3. Render, commit and push.
 
 ### Tabs within one page
@@ -324,11 +341,32 @@ You edited but didn't save, or you didn't render again. Save the `.qmd`, run `qu
 </details>
 
 <details>
-<summary><b>The menu bar is missing</b></summary>
+<summary><b><code>You must use the .qmd extension for documents with executable code</code></b></summary>
+
+In a website project, `quarto render` renders **every** document in the folder, including `.md` files. If a `.md` file contains example code blocks (like these guides), Quarto tries to run them and stops.
+
+Tell Quarto to render only `.qmd` files. In `_quarto.yml`, add `render:` under `project:`:
+```yaml
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+```
+Then run `quarto render` again, and delete any unwanted `.html` files (e.g. `RENDER.html`) from `docs/`.
+
+Other ways:
+- Leave out one file with `!`, e.g. add `- "!draft.qmd"` under `render:`.
+- Start the file name with an underscore, e.g. `_notes.md`. Quarto always ignores files starting with `_`.
+
+</details>
+
+<details>
+<summary><b>The sidebar is missing</b></summary>
 
 - The file must be called exactly `_quarto.yml`, with the underscore, and be in the project folder (not in a subfolder).
 - Render with `quarto render` **without** a file name.
-- You're looking at an old `index.html` in the main folder. Open the one in `docs/`.
+- You're looking at an old single-page version. Run `quarto preview` **without** a file name.
 
 </details>
 
@@ -350,7 +388,7 @@ For a single page, the `index_files/` folder wasn't pushed. For a website, the `
 </details>
 
 <details>
-<summary><b>A tab leads to "404" on GitHub Pages</b></summary>
+<summary><b>A sidebar link leads to "404" on GitHub Pages</b></summary>
 
 - The page isn't listed in `_quarto.yml`, or wasn't rendered. Run `quarto render`, then commit and push.
 - GitHub Pages is still set to `/ (root)`. Change it to `/docs` under **Settings → Pages**.
