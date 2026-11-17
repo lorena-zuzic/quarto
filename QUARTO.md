@@ -150,11 +150,11 @@ You control each code block with **options**: lines starting with `#|` at the ve
 
 | Option | Effect |
 |---|---|
-| `#| echo: false` | Hide the code, show the result |
-| `#| output: false` | Show the code, hide the result |
-| `#| include: false` | Hide both, but still run the code (e.g. for loading data) |
-| `#| eval: false` | Show the code, but **don't run** it |
-| `#| code-fold: true` | Hide the code behind a clickable **▶ Code** button |
+| `#\| echo: false` | Hide the code, show the result |
+| `#\| output: false` | Show the code, hide the result |
+| `#\| include: false` | Hide both, but still run the code (e.g. for loading data) |
+| `#\| eval: false` | Show the code, but **don't run** it |
+| `#\| code-fold: true` | Hide the code behind a clickable **▶ Code** button |
 
 Example: the reader sees only the result, `10`.
 ````markdown
@@ -239,9 +239,9 @@ See @fig-lab.
 
 | Option | Effect |
 |---|---|
-| `#| fig-alt: "Line rising steeply"` | Description for screen readers |
-| `#| fig-width: 6` | Width in inches |
-| `#| fig-height: 4` | Height in inches |
+| `#\| fig-alt: "Line rising steeply"` | Description for screen readers |
+| `#\| fig-width: 6` | Width in inches |
+| `#\| fig-height: 4` | Height in inches |
 
 > Labels may only contain letters, numbers and `-`. **No spaces or underscores**: `fig-my-plot` works, `fig my_plot` does not.
 

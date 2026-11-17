@@ -14,7 +14,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "Hello again… This is an about page. It’s canadian.",
+    "text": "Hello again… This is an about page. It’s canadian.\n\nTabset 1Tabset 2\n\n\nI want to try a tabset. What is it?\n\n\nThis is a tabset!\n\n\n\n\nThis is just a normal heading",
     "crumbs": [
       "About"
     ]

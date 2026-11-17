@@ -6,3 +6,13 @@ format:
 ---
 
 Hello again... This is an about page. It's canadian.
+
+::: {.panel-tabset}
+### Tabset 1
+I want to try a tabset. What is it?
+
+### Tabset 2
+This is a tabset!
+:::
+
+# This is just a normal heading
