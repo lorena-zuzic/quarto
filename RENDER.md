@@ -115,6 +115,60 @@ quarto check
 
 ---
 
+## Publishing your page with GitHub Pages
+
+GitHub can show the `.html` files in your repository as a website, at
+`https://USERNAME.github.io/REPOSITORY/`.
+
+Before you start:
+1. Your project folder must be linked to a GitHub repository (see `GITHUB.md`, Parts 1–2).
+2. Your main page must be called **`index.qmd`**. A website always opens the file called `index.html` first, so this page becomes your home page.
+3. Render it and push **both** `index.html` and `index_files/`:
+   ```bash
+   quarto render index.qmd
+   git add .
+   git commit -m "First page"
+   git push
+   ```
+
+### Step 1 – Make sure the repository is public
+On a free GitHub account, Pages only works for public repositories.
+- On your repository page, next to its name, it says **Public** or **Private**.
+- If it says Private: **Settings** → scroll to the bottom (**Danger Zone**) → **Change visibility** → **Make public**.
+
+### Step 2 – Switch on Pages
+1. On your repository page, click **Settings** (top menu, gear icon).
+2. In the left menu, click **Pages**.
+3. Under **Build and deployment**:
+   - **Source:** Deploy from a branch
+   - **Branch:** `main`
+   - **Folder:** `/ (root)`
+4. Click **Save**.
+
+### Step 3 – Wait and find your link
+- GitHub now builds the site, which takes about a minute. You can watch it in the **Actions** tab: a yellow dot turns into a green tick.
+- Go back to **Settings → Pages** and refresh. At the top it says *"Your site is live at …"*.
+
+Click it: your `index` page opens.
+```
+https://USERNAME.github.io/REPOSITORY/
+```
+
+### Step 4 – Optional: show the link on the repository page
+On the repository's main page, click the ⚙️ next to **About** (right side). Tick **Use your GitHub Pages website** and click **Save**. The link now appears at the top of the repository.
+
+### Updating the page
+The website shows the `.html` that is on GitHub, not your `.qmd`. After each change, render and push again:
+```bash
+quarto render index.qmd
+git add .
+git commit -m "Update page"
+git push
+```
+The website updates by itself about a minute after the push.
+
+---
+
 ## Rendering a website with several pages
 
 So far each `.qmd` becomes its own separate page. To make **one website** with a **menu bar** (tabs) at the top that links all your pages together, you turn the folder into a **website project**.
@@ -193,9 +247,9 @@ If you rendered single pages earlier, delete the old `index.html` and `index_fil
    git commit -m "Website"
    git push
    ```
-3. On GitHub: **Settings → Pages**. Keep the branch as **`main`**, change the folder from `/ (root)` to **`/docs`**, and click **Save**.
+3. On GitHub: **Settings → Pages**. Keep the branch as **`main`**, change the folder from `/ (root)` to **`/docs`**, and click **Save**. (First time using Pages? Follow "Publishing your page with GitHub Pages" above, but choose `/docs` as the folder.)
 
-After about a minute, `https://USERNAME.github.io/REPOSITORY/` opens your home page, with the menu bar leading to the other pages.
+After about a minute, `https://USERNAME.github.io/REPOSITORY/` opens your home page, with the menu bar leading to the other pages. You can also type a page's file name at the end, e.g. `…/about.html` for `about.qmd`.
 
 ### Updating the website
 ```bash
@@ -280,6 +334,23 @@ You edited but didn't save, or you didn't render again. Save the `.qmd`, run `qu
 </details>
 
 <details>
+<summary><b>My GitHub Pages address shows "404"</b></summary>
+
+- Wait a minute and refresh. The first build takes a while.
+- The address without a file name (`https://USERNAME.github.io/REPOSITORY/`) looks for a file called `index.html`. Check that your page is called `index.qmd` (not e.g. `hello.qmd`), then render it and push.
+- Check that `index.html` is actually on GitHub (in the main folder for a single page, in `docs/` for a website). If it isn't, you forgot to render or to push.
+- Check the Pages folder setting: `/ (root)` for a single page, `/docs` for a website.
+
+</details>
+
+<details>
+<summary><b>My GitHub Pages site looks plain or unstyled</b></summary>
+
+For a single page, the `index_files/` folder wasn't pushed. For a website, the `docs/` folder or `.nojekyll` wasn't pushed. Run `git status`, then `git add .`, `git commit` and `git push`.
+
+</details>
+
+<details>
 <summary><b>A tab leads to "404" on GitHub Pages</b></summary>
 
 - The page isn't listed in `_quarto.yml`, or wasn't rendered. Run `quarto render`, then commit and push.
@@ -291,4 +362,4 @@ You edited but didn't save, or you didn't render again. Save the `.qmd`, run `qu
 ---
 
 ## Next step
-Once a page renders, you can publish it online with GitHub Pages. See `GITHUB.md` for getting the project onto GitHub first.
+To learn what else you can write in a `.qmd` file (code, hidden code, figures, interactive code), see `QUARTO.md`.
