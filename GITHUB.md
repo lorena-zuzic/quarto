@@ -43,7 +43,7 @@ git config --global --list
 
 ### 2.1 On GitHub (in the browser)
 1. Click the **+** in the top right, then **New repository**.
-2. Give it a name, e.g. `myproject`.
+2. Give it the same name as your project folder, e.g. `quarto-test`.
 3. Choose **Public** (needed for free GitHub Pages websites).
 4. Leave it **empty**: do **not** tick README, .gitignore or license.
 5. Click **Create repository**. Keep this page open; it shows the repository address.
@@ -52,7 +52,7 @@ git config --global --list
 
 **Go to your project folder.**
 ```bash
-cd ~/Documents/myproject
+cd ~/Documents/quarto-test
 ```
 `~` means your home folder (`C:\Users\YourName`). Use forward slashes `/`, not backslashes.
 Tip: in File Explorer you can right-click inside a folder → **Open Git Bash here** (on Windows 11: **Show more options** first).
@@ -74,7 +74,7 @@ git commit -m "First commit"
 
 **Link the folder to your GitHub repository.** Copy the **HTTPS** address from the GitHub page (it ends in `.git`).
 ```bash
-git remote add origin https://github.com/USERNAME/myproject.git
+git remote add origin https://github.com/USERNAME/quarto-test.git
 ```
 
 **Upload to GitHub.**
