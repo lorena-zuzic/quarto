@@ -1,21 +1,56 @@
 ---
-title: "Quarto Basics"
+title: "Bats: the basics"
+subtitle: "A short lecture in fun facts"
 format:
     html:
         code-fold: true
 jupyter: python3
 ---
 
-Hello world!
+<!-- Teaching note: this page shows text formatting, a tabset, and hidden code. -->
+
+## What is a bat?
+
+Bats are **mammals**, and they are the *only* mammals that can truly fly.
+Gliders such as flying squirrels can only fall with style.
+
+Their scientific name, **Chiroptera**, comes from Greek and means *"hand wing"*.
+A bat's wing is a hand: long finger bones with a thin skin stretched between them.
+
+## How many are there?
+
+There are more than **1,400 bat species**. That makes bats the second-largest group of mammals, after rodents.
 
 ```{python}
-
-import numpy as np
-print("good job")
-
+#| echo: false
+bat_species = 1400
+mammal_species = 6500
+share = bat_species / mammal_species * 100
+print(f"Roughly {share:.0f}% of all mammal species are bats.")
 ```
 
-This is some text that will be shown on screen. 
+## Five fun facts
 
-Want to make it bold? **here**
+1. The smallest bat, **Kitti's hog-nosed bat**, weighs about 2 grams, less than a sugar cube.
+2. The largest, the **flying foxes**, have wings spanning up to about 1.5 metres.
+3. A Brandt's bat lived for over **40 years** in the wild. For a 7-gram animal, that is extraordinary.
+4. Bracken Cave in Texas is home to around **15 million** bats each summer, the largest known bat colony.
+5. Bats help make tequila: they pollinate the **agave** plant.
 
+## Myth or fact?
+
+::: {.panel-tabset}
+### "Bats are blind"
+**Myth.** All bats can see. Many species also use *echolocation* to hunt in the dark, and fruit bats have excellent eyesight.
+
+### "Bats drink blood"
+**Mostly myth.** Only **3** of over 1,400 species feed on blood, all in Central and South America. Most bats eat insects or fruit.
+
+### "Bats are pest controllers"
+**Fact.** A single small bat can eat hundreds of insects in one night, including mosquitoes and crop pests.
+:::
+
+## Want to know more?
+
+- [Bat Conservation International](https://www.batcon.org)
+- Next page: **Bats by the numbers**, with some Python and a figure.

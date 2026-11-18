@@ -1,0 +1,54 @@
+---
+title: "Try it yourself"
+format: live-html
+engine: markdown
+---
+
+<!-- Teaching note: this page uses quarto-live. The code runs in the reader's browser. -->
+
+On this page **you** can change the code and run it. Click **Run Code** after each change.
+The first run takes a few seconds while your browser loads Python.
+
+## 1. A bat's call
+
+Change the frequency `f_khz` and run the code. What happens to the wavelength?
+
+```{pyodide}
+speed_of_sound = 343  # m/s
+f_khz = 50            # try 20, 100 or 200
+
+wavelength_mm = speed_of_sound / (f_khz * 1000) * 1000
+print(f"At {f_khz} kHz the wavelength is {wavelength_mm:.1f} mm")
+```
+
+## 2. Hungry bats
+
+Bracken Cave holds about 15 million bats. Suppose each one eats 500 insects a night.
+
+```{pyodide}
+bats = 15_000_000
+insects_per_bat = 500     # change this guess
+
+total = bats * insects_per_bat
+print(f"{total:,} insects eaten in one night")
+```
+
+**Question:** how many insects is that in a 30-night month? Add a line to work it out.
+
+## 3. Draw your own plot
+
+Add a bat species to the lists and run the code again.
+
+```{pyodide}
+import matplotlib.pyplot as plt
+
+species = ["Kitti's hog-nosed bat", "Common pipistrelle", "Egyptian fruit bat"]
+mass_g = [2, 5, 140]
+
+plt.bar(species, mass_g)
+plt.ylabel("Body mass (g)")
+plt.xticks(rotation=20)
+plt.show()
+```
+
+**Try:** add `"Large flying fox"` with a mass of `1000`. Does the plot still look useful? What could you change?

@@ -1,18 +1,26 @@
 ---
-title: "About"
-format:
-    html:
-        code-fold: false
+title: "About this lecture"
 ---
 
-Hello again... This is an about page. It's canadian.
+This short website is a lecture about bats, and at the same time an example of what Quarto can do.
+Each page shows a few of the techniques from `QUARTO.md`.
 
-::: {.panel-tabset}
-### Tabset 1
-I want to try a tabset. What is it?
+| Page | Quarto features it shows |
+|---|---|
+| Home | Headings, bold and italic text, lists, links, a tabset, a hidden code block (`echo: false`) |
+| Bats by the numbers | Python code, code folding, a labelled figure with a cross-reference, maths, a block that isn't run (`eval: false`) |
+| Try it yourself | Editable code that runs in the browser (quarto-live, `{pyodide}` blocks) |
 
-### Tabset 2
-This is a tabset!
-:::
+## How to explore
 
-# This is just a normal heading
+Open the matching `.qmd` file next to each page and compare the two. Then change something, render, and preview:
+
+```bash
+quarto render
+quarto preview
+```
+
+## Sources
+
+The numbers on these pages are rounded and meant for fun, not for research.
+For reliable information, see [Bat Conservation International](https://www.batcon.org).

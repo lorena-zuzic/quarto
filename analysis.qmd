@@ -1,15 +1,83 @@
 ---
-title: "Analysis"
+title: "Bats by the numbers"
 format:
     html:
-        code-fold: false
+        code-fold: true
+        code-summary: "Show the code"
 jupyter: python3
 ---
 
-This is an analysis page.
+<!-- Teaching note: this page shows Python code, code folding, maths and a labelled figure. -->
+
+## Small and large bats
+
+Bats come in very different sizes. Below are approximate values for seven species.
 
 ```{python}
+species = [
+    "Kitti's hog-nosed bat",
+    "Common pipistrelle",
+    "Brandt's bat",
+    "Mexican free-tailed bat",
+    "Common vampire bat",
+    "Egyptian fruit bat",
+    "Large flying fox",
+]
+mass_g = [2, 5, 7, 12, 35, 140, 1000]       # body mass in grams
+wingspan_cm = [16, 22, 23, 32, 38, 60, 150]  # wingspan in centimetres
 
-1 + 1
-
+for name, m, w in zip(species, mass_g, wingspan_cm):
+    print(f"{name:<25} {m:>5} g   {w:>4} cm")
 ```
+
+The heaviest bat in this list weighs about **500 times** as much as the lightest. @fig-size shows how wingspan grows with body mass.
+
+```{python}
+#| label: fig-size
+#| fig-cap: "Wingspan against body mass for seven bat species (approximate values). Mass is on a logarithmic scale."
+#| fig-alt: "Scatter plot: wingspan increases with body mass, from about 16 cm at 2 g to 150 cm at 1 kg."
+#| echo: false
+import matplotlib.pyplot as plt
+
+plt.scatter(mass_g, wingspan_cm)
+for name, m, w in zip(species, mass_g, wingspan_cm):
+    plt.annotate(name, (m, w), fontsize=8, xytext=(5, -3), textcoords="offset points")
+plt.xscale("log")
+plt.xlabel("Body mass (g)")
+plt.ylabel("Wingspan (cm)")
+plt.show()
+```
+
+## Seeing with sound
+
+Many bats find insects by **echolocation**: they shout and listen for the echo.
+The calls are mostly between 20 and 200 kHz, too high for humans to hear (we stop at about 20 kHz).
+
+How small an object a bat can detect depends on the **wavelength** of its call:
+
+$$
+\lambda = \frac{v}{f}
+$$
+
+where $v \approx 343$ m/s is the speed of sound in air and $f$ is the call frequency.
+
+```{python}
+#| code-fold: false
+speed_of_sound = 343  # m/s
+
+for f_khz in [20, 50, 100, 200]:
+    wavelength_mm = speed_of_sound / (f_khz * 1000) * 1000
+    print(f"{f_khz:>3} kHz  ->  wavelength {wavelength_mm:.1f} mm")
+```
+
+At higher frequencies the wavelength is only a few millimetres, about the size of a mosquito. That's why insect-hunting bats use such high calls.
+
+This block is shown but not run, because it only explains the idea:
+
+```{python}
+#| eval: false
+# A bat hears its echo after time t, so the distance to the insect is
+distance = speed_of_sound * t / 2
+```
+
+Ready to try it yourself? Go to **Try it yourself**.

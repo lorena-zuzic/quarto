@@ -1,32 +1,162 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Quarto Basics",
+    "objectID": "practice.html",
+    "href": "practice.html",
+    "title": "Try it yourself",
     "section": "",
-    "text": "Hello world!\n\n\nCode\nimport numpy as np\nprint(\"good job\")\n\n\ngood job\n\n\nThis is some text that will be shown on screen.\nWant to make it bold? here",
+    "text": "On this page you can change the code and run it. Click Run Code after each change. The first run takes a few seconds while your browser loads Python.",
     "crumbs": [
-      "Home"
+      "Try it yourself"
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Hello again… This is an about page. It’s canadian.\n\nTabset 1Tabset 2\n\n\nI want to try a tabset. What is it?\n\n\nThis is a tabset!\n\n\n\n\nThis is just a normal heading",
+    "objectID": "practice.html#a-bats-call",
+    "href": "practice.html#a-bats-call",
+    "title": "Try it yourself",
+    "section": "1. A bat’s call",
+    "text": "1. A bat’s call\nChange the frequency f_khz and run the code. What happens to the wavelength?",
     "crumbs": [
-      "About"
+      "Try it yourself"
+    ]
+  },
+  {
+    "objectID": "practice.html#hungry-bats",
+    "href": "practice.html#hungry-bats",
+    "title": "Try it yourself",
+    "section": "2. Hungry bats",
+    "text": "2. Hungry bats\nBracken Cave holds about 15 million bats. Suppose each one eats 500 insects a night.\n\n\n\n\n\n\nQuestion: how many insects is that in a 30-night month? Add a line to work it out.",
+    "crumbs": [
+      "Try it yourself"
+    ]
+  },
+  {
+    "objectID": "practice.html#draw-your-own-plot",
+    "href": "practice.html#draw-your-own-plot",
+    "title": "Try it yourself",
+    "section": "3. Draw your own plot",
+    "text": "3. Draw your own plot\nAdd a bat species to the lists and run the code again.\n\n\n\n\n\n\nTry: add \"Large flying fox\" with a mass of 1000. Does the plot still look useful? What could you change?",
+    "crumbs": [
+      "Try it yourself"
     ]
   },
   {
     "objectID": "analysis.html",
     "href": "analysis.html",
-    "title": "Analysis",
+    "title": "Bats by the numbers",
     "section": "",
-    "text": "This is an analysis page.\n\n1 + 1\n\n2",
+    "text": "Bats come in very different sizes. Below are approximate values for seven species.\n\n\nShow the code\nspecies = [\n    \"Kitti's hog-nosed bat\",\n    \"Common pipistrelle\",\n    \"Brandt's bat\",\n    \"Mexican free-tailed bat\",\n    \"Common vampire bat\",\n    \"Egyptian fruit bat\",\n    \"Large flying fox\",\n]\nmass_g = [2, 5, 7, 12, 35, 140, 1000]       # body mass in grams\nwingspan_cm = [16, 22, 23, 32, 38, 60, 150]  # wingspan in centimetres\n\nfor name, m, w in zip(species, mass_g, wingspan_cm):\n    print(f\"{name:&lt;25} {m:&gt;5} g   {w:&gt;4} cm\")\n\n\nKitti's hog-nosed bat         2 g     16 cm\nCommon pipistrelle            5 g     22 cm\nBrandt's bat                  7 g     23 cm\nMexican free-tailed bat      12 g     32 cm\nCommon vampire bat           35 g     38 cm\nEgyptian fruit bat          140 g     60 cm\nLarge flying fox           1000 g    150 cm\n\n\nThe heaviest bat in this list weighs about 500 times as much as the lightest. Figure 1 shows how wingspan grows with body mass.\n\n\n\n\n\n\n\n\nFigure 1: Wingspan against body mass for seven bat species (approximate values). Mass is on a logarithmic scale.",
     "crumbs": [
-      "Analysis"
+      "Bats by the numbers"
+    ]
+  },
+  {
+    "objectID": "analysis.html#small-and-large-bats",
+    "href": "analysis.html#small-and-large-bats",
+    "title": "Bats by the numbers",
+    "section": "",
+    "text": "Bats come in very different sizes. Below are approximate values for seven species.\n\n\nShow the code\nspecies = [\n    \"Kitti's hog-nosed bat\",\n    \"Common pipistrelle\",\n    \"Brandt's bat\",\n    \"Mexican free-tailed bat\",\n    \"Common vampire bat\",\n    \"Egyptian fruit bat\",\n    \"Large flying fox\",\n]\nmass_g = [2, 5, 7, 12, 35, 140, 1000]       # body mass in grams\nwingspan_cm = [16, 22, 23, 32, 38, 60, 150]  # wingspan in centimetres\n\nfor name, m, w in zip(species, mass_g, wingspan_cm):\n    print(f\"{name:&lt;25} {m:&gt;5} g   {w:&gt;4} cm\")\n\n\nKitti's hog-nosed bat         2 g     16 cm\nCommon pipistrelle            5 g     22 cm\nBrandt's bat                  7 g     23 cm\nMexican free-tailed bat      12 g     32 cm\nCommon vampire bat           35 g     38 cm\nEgyptian fruit bat          140 g     60 cm\nLarge flying fox           1000 g    150 cm\n\n\nThe heaviest bat in this list weighs about 500 times as much as the lightest. Figure 1 shows how wingspan grows with body mass.\n\n\n\n\n\n\n\n\nFigure 1: Wingspan against body mass for seven bat species (approximate values). Mass is on a logarithmic scale.",
+    "crumbs": [
+      "Bats by the numbers"
+    ]
+  },
+  {
+    "objectID": "analysis.html#seeing-with-sound",
+    "href": "analysis.html#seeing-with-sound",
+    "title": "Bats by the numbers",
+    "section": "Seeing with sound",
+    "text": "Seeing with sound\nMany bats find insects by echolocation: they shout and listen for the echo. The calls are mostly between 20 and 200 kHz, too high for humans to hear (we stop at about 20 kHz).\nHow small an object a bat can detect depends on the wavelength of its call:\n\\[\n\\lambda = \\frac{v}{f}\n\\]\nwhere \\(v \\approx 343\\) m/s is the speed of sound in air and \\(f\\) is the call frequency.\n\nspeed_of_sound = 343  # m/s\n\nfor f_khz in [20, 50, 100, 200]:\n    wavelength_mm = speed_of_sound / (f_khz * 1000) * 1000\n    print(f\"{f_khz:&gt;3} kHz  -&gt;  wavelength {wavelength_mm:.1f} mm\")\n\n 20 kHz  -&gt;  wavelength 17.1 mm\n 50 kHz  -&gt;  wavelength 6.9 mm\n100 kHz  -&gt;  wavelength 3.4 mm\n200 kHz  -&gt;  wavelength 1.7 mm\n\n\nAt higher frequencies the wavelength is only a few millimetres, about the size of a mosquito. That’s why insect-hunting bats use such high calls.\nThis block is shown but not run, because it only explains the idea:\n\n\nShow the code\n# A bat hears its echo after time t, so the distance to the insect is\ndistance = speed_of_sound * t / 2\n\n\nReady to try it yourself? Go to Try it yourself.",
+    "crumbs": [
+      "Bats by the numbers"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this lecture",
+    "section": "",
+    "text": "This short website is a lecture about bats, and at the same time an example of what Quarto can do. Each page shows a few of the techniques from QUARTO.md.",
+    "crumbs": [
+      "About this lecture"
+    ]
+  },
+  {
+    "objectID": "about.html#how-to-explore",
+    "href": "about.html#how-to-explore",
+    "title": "About this lecture",
+    "section": "How to explore",
+    "text": "How to explore\nOpen the matching .qmd file next to each page and compare the two. Then change something, render, and preview:\nquarto render\nquarto preview",
+    "crumbs": [
+      "About this lecture"
+    ]
+  },
+  {
+    "objectID": "about.html#sources",
+    "href": "about.html#sources",
+    "title": "About this lecture",
+    "section": "Sources",
+    "text": "Sources\nThe numbers on these pages are rounded and meant for fun, not for research. For reliable information, see Bat Conservation International.",
+    "crumbs": [
+      "About this lecture"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bats: the basics",
+    "section": "",
+    "text": "Bats are mammals, and they are the only mammals that can truly fly. Gliders such as flying squirrels can only fall with style.\nTheir scientific name, Chiroptera, comes from Greek and means “hand wing”. A bat’s wing is a hand: long finger bones with a thin skin stretched between them.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#what-is-a-bat",
+    "href": "index.html#what-is-a-bat",
+    "title": "Bats: the basics",
+    "section": "",
+    "text": "Bats are mammals, and they are the only mammals that can truly fly. Gliders such as flying squirrels can only fall with style.\nTheir scientific name, Chiroptera, comes from Greek and means “hand wing”. A bat’s wing is a hand: long finger bones with a thin skin stretched between them.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#how-many-are-there",
+    "href": "index.html#how-many-are-there",
+    "title": "Bats: the basics",
+    "section": "How many are there?",
+    "text": "How many are there?\nThere are more than 1,400 bat species. That makes bats the second-largest group of mammals, after rodents.\n\n\nRoughly 22% of all mammal species are bats.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#five-fun-facts",
+    "href": "index.html#five-fun-facts",
+    "title": "Bats: the basics",
+    "section": "Five fun facts",
+    "text": "Five fun facts\n\nThe smallest bat, Kitti’s hog-nosed bat, weighs about 2 grams, less than a sugar cube.\nThe largest, the flying foxes, have wings spanning up to about 1.5 metres.\nA Brandt’s bat lived for over 40 years in the wild. For a 7-gram animal, that is extraordinary.\nBracken Cave in Texas is home to around 15 million bats each summer, the largest known bat colony.\nBats help make tequila: they pollinate the agave plant.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#myth-or-fact",
+    "href": "index.html#myth-or-fact",
+    "title": "Bats: the basics",
+    "section": "Myth or fact?",
+    "text": "Myth or fact?\n\n“Bats are blind”“Bats drink blood”“Bats are pest controllers”\n\n\nMyth. All bats can see. Many species also use echolocation to hunt in the dark, and fruit bats have excellent eyesight.\n\n\nMostly myth. Only 3 of over 1,400 species feed on blood, all in Central and South America. Most bats eat insects or fruit.\n\n\nFact. A single small bat can eat hundreds of insects in one night, including mosquitoes and crop pests.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#want-to-know-more",
+    "href": "index.html#want-to-know-more",
+    "title": "Bats: the basics",
+    "section": "Want to know more?",
+    "text": "Want to know more?\n\nBat Conservation International\nNext page: Bats by the numbers, with some Python and a figure.",
+    "crumbs": [
+      "Home"
     ]
   }
 ]

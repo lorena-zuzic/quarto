@@ -5,14 +5,15 @@ project:
       - "*.qmd"
 
 website:
-    title: "Quarto trial"
+    title: "Bat fun facts"
     sidebar:
         style: docked
         contents:
           - href: index.qmd
             text: Home
-          - about.qmd
           - analysis.qmd
+          - practice.qmd
+          - about.qmd
 
 format:
     html:
